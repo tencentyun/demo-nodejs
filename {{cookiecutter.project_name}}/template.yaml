@@ -1,0 +1,23 @@
+Resources:
+    hello_world:
+        Type: 'TencentCloud::Scf::Function'
+        Properties:
+            Handler: index.main_handler
+            {%- if cookiecutter.runtime == 'nodejs8.9' %}
+            Runtime: Nodejs8.9
+            {%- elif cookiecutter.runtime == 'nodejs6.10' %}
+            Runtime: Nodejs6.10
+            {%- else %}
+            Runtime: Nodejs6.10
+            {%- endif %}
+            CodeUri: ./hello_world
+            Description: This is a template function
+            Environment:
+            Variables:
+                ENV_FIRST: env1
+                ENV_SECOND: env2
+            MemorySize: 128
+            Timeout: 3
+Globals:
+  Function:
+    Timeout: 10
